@@ -253,11 +253,11 @@ static inline uint16_t GET_GRE_HDR_LENGTH (const uint8_t *gre_hdr) {
     struct fe_gre *gre = (struct fe_gre *)gre_hdr;
     uint16_t length = GRE_BASE_HEADER_SIZE;
     if (gre->fixed_hdr.flags & GRE_TUNNEL_CSUM)
-	length += 4;
+        length += 4;
     if (gre->fixed_hdr.flags & GRE_TUNNEL_KEY)
-	length += 4;
+        length += 4;
     if (gre->fixed_hdr.flags & GRE_TUNNEL_SEQ)
-	length += 4;
+        length += 4;
     return (length);
 }
 
@@ -303,17 +303,17 @@ struct fe_nsh {
 static const inline uint16_t GET_NSH_HDR_LENGTH (const uint8_t *nsh_hdr) {
     struct fe_nsh *nsh = (struct fe_nsh *)nsh_hdr;
     return ((ntohs(nsh->ver_flags_ttl_len) & NSH_LEN_MASK) >>
-	    NSH_LEN_SHIFT) << 2;
+            NSH_LEN_SHIFT) << 2;
 }
 
 static const inline uint8_t GET_NSH_SERVICE_INDEX (const uint8_t *nsh_hdr) {
     struct fe_nsh *nsh = (struct fe_nsh *)nsh_hdr;
     return ((ntohl(nsh->svc_path) & NSH_SI_MASK) >>
-	    NSH_SI_SHIFT);
+            NSH_SI_SHIFT);
 }
 
 static inline void SET_NSH_SERVICE_INDEX (uint8_t *nsh_hdr,
-					  uint8_t svc_index) {
+                                          uint8_t svc_index) {
     struct fe_nsh *nsh = (struct fe_nsh *)nsh_hdr;
     uint32_t svc_path = (ntohl(nsh->svc_path) & NSH_SPI_MASK);
     svc_path = svc_path | (svc_index & NSH_SI_MASK);
