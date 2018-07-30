@@ -10,6 +10,10 @@ The following packages are required to build:
     gcc
     make
     libpthread-stubs0-dev
+    
+    apt-get -y update
+    apt-get -y --fix-missing install make gcc libpthread-stubs0-dev
+
 
 ### Build
 To build the code run make from the top directory:
